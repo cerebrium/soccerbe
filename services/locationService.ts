@@ -3,20 +3,16 @@ import { guard } from "../utils/utilFunctions";
 
 class LocationService {
   async findLocations(): Promise<unknown | Location[]> {
-    const result = await locationDao.getLocations;
-    if (result instanceof Error) {
-      throw result;
-    }
-    return result;
+    return await locationDao.getLocations;
   }
 
   async addLocation(location: Location): Promise<any> {
-    guard(Array.from(arguments));
-    const result = await locationDao.addLocation(location);
-    if (result instanceof Error) {
-      throw result;
+    try {
+      guard(Array.from(arguments));
+    } catch (e) {
+      return e;
     }
-    return result;
+    return await locationDao.addLocation(location);
   }
 }
 
