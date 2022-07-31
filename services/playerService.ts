@@ -4,41 +4,37 @@ import { guard } from "../utils/utilFunctions";
 
 class PlayerService {
   async findPlayers(): Promise<unknown> {
-    const result = await playersDAO.getPlayers();
-    if (result instanceof Error) {
-      throw result;
-    }
-    return result;
+    return await playersDAO.getPlayers();
   }
 
   async addPlayer(player: Player): Promise<unknown> {
-    guard(Array.from(arguments));
-    const result = await playersDAO.addPlayer(player);
-    if (result instanceof Error) {
-      throw result;
+    try {
+      guard(Array.from(arguments));
+    } catch (e) {
+      return e;
     }
-    return result;
+    return await playersDAO.addPlayer(player);
   }
 
   async getPlayerByEmail(email: string): Promise<unknown> {
-    guard(Array.from(arguments));
-    const result = await playersDAO.getPlayerByEmail(email);
-    if (result instanceof Error) {
-      throw result;
+    try {
+      guard(Array.from(arguments));
+    } catch (e) {
+      return e;
     }
-    return result;
+    return await playersDAO.getPlayerByEmail(email);
   }
 
   async addTeamToPlayer(
     playerId: string,
     teamId: mongoose.Types.ObjectId
   ): Promise<unknown> {
-    guard(Array.from(arguments));
-    const result = await playersDAO.addTeamToPlayer(playerId, teamId);
-    if (result instanceof Error) {
-      throw result;
+    try {
+      guard(Array.from(arguments));
+    } catch (e) {
+      return e;
     }
-    return result;
+    return await playersDAO.addTeamToPlayer(playerId, teamId);
   }
 }
 
