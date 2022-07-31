@@ -9,10 +9,10 @@ class LocationService {
   async addLocation(location: Location): Promise<any> {
     try {
       guard(Array.from(arguments));
+      return await locationDao.addLocation(location);
     } catch (e) {
       return e;
     }
-    return await locationDao.addLocation(location);
   }
 }
 
