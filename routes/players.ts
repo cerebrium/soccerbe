@@ -7,7 +7,7 @@ let router: Router = express.Router();
 router.post("/add", async (req, res): Promise<void> => {
   try {
     const newPlayer = await playersService.addPlayer(req.body);
-    res.status(500).json(newPlayer);
+    res.status(200).json(newPlayer);
   } catch (e) {
     res.status(500).json(e);
   }
@@ -16,7 +16,7 @@ router.post("/add", async (req, res): Promise<void> => {
 router.get("/", async (_, res): Promise<void> => {
   try {
     const players = await playersService.findPlayers();
-    res.status(500).json(players);
+    res.status(200).json(players);
   } catch (e) {
     res.status(500).json(e);
   }
@@ -25,7 +25,7 @@ router.get("/", async (_, res): Promise<void> => {
 router.get("/:email", async (req, res): Promise<void> => {
   try {
     const player = await playersService.getPlayerByEmail(req.params.email);
-    res.status(500).json(player);
+    res.status(200).json(player);
   } catch (e) {
     res.status(500).json(e);
   }
@@ -37,7 +37,7 @@ router.put("/:playerId/addTeam/:teamId", async (req, res): Promise<void> => {
       req.params.playerId,
       req.params.teamId as unknown as mongoose.Types.ObjectId
     );
-    res.status(500).json(player);
+    res.status(200).json(player);
   } catch (e) {
     res.status(500).json(e);
   }

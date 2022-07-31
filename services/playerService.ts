@@ -10,19 +10,19 @@ class PlayerService {
   async addPlayer(player: Player): Promise<unknown> {
     try {
       guard(Array.from(arguments));
+      return await playersDAO.addPlayer(player);
     } catch (e) {
       return e;
     }
-    return await playersDAO.addPlayer(player);
   }
 
   async getPlayerByEmail(email: string): Promise<unknown> {
     try {
       guard(Array.from(arguments));
+      return await playersDAO.getPlayerByEmail(email);
     } catch (e) {
       return e;
     }
-    return await playersDAO.getPlayerByEmail(email);
   }
 
   async addTeamToPlayer(
@@ -31,10 +31,10 @@ class PlayerService {
   ): Promise<unknown> {
     try {
       guard(Array.from(arguments));
+      return await playersDAO.addTeamToPlayer(playerId, teamId);
     } catch (e) {
       return e;
     }
-    return await playersDAO.addTeamToPlayer(playerId, teamId);
   }
 }
 
