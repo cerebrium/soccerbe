@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { connect } from "../db/db";
 import Player from "../models/Player";
 
 export type Player = {
@@ -10,18 +9,6 @@ export type Player = {
 };
 
 class PlayersDAO {
-  constructor() {
-    this.connectToPlayers();
-  }
-
-  async connectToPlayers(): Promise<void> {
-    try {
-      await connect();
-    } catch (e) {
-      console.log("Error in the dao: ", e);
-    }
-  }
-
   async getPlayers(): Promise<unknown | Player[]> {
     try {
       return await Player.find();
